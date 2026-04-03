@@ -23,6 +23,17 @@
 
 ---
 
+## AIに渡す順序
+
+1. `operating-system.md`（思考様式・問題の捉え方）
+2. `decision-principles.md`（判断原則）
+3. プロジェクト固有の skill または仕様書
+4. 未解決課題・バグ記録（あれば）
+
+この順序で渡すことで、原則を先に理解させてからプロジェクト文脈に入れる。
+
+---
+
 ## 指示のポイント
 
 AIに渡すとき、以下を添えると精度が上がる：
@@ -31,6 +42,30 @@ AIに渡すとき、以下を添えると精度が上がる：
 - **必須変更点**: 必ず反映すべきこと
 - **禁止事項**: 触れてはいけないこと
 - **正本の場所**: 何を基準に判断するか
+
+---
+
+## ツール別の使い方
+
+### GitHub Copilot（VS Code）
+セッション開始時にチャットで raw URL を貼り付けて「読んでください」と伝える。
+または `.github/copilot-instructions.md` に参照先を記載する。
+
+### Claude（claude.ai / API）
+会話の冒頭にURLを列挙して「これらを読んでから作業してください」と伝える。
+長いドキュメントはそのままコンテキストに貼っても有効。
+
+### ChatGPT（カスタムGPT）
+カスタムGPTの Instructions に以下を記載する：
+```
+Before starting any task, read:
+- https://raw.githubusercontent.com/koji140/personal-os/main/operating-system.md
+- https://raw.githubusercontent.com/koji140/personal-os/main/decision-principles.md
+```
+
+### Cursor
+`.cursor/rules/` または `CURSOR_RULES.md` に参照先を記載する。
+エージェントモードでは会話冒頭に URL を渡す。
 
 ---
 
